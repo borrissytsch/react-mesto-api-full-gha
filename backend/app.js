@@ -33,8 +33,10 @@ app.use((req, res, next) => {
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE'; // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
   const requestHeaders = req.headers['access-control-request-headers']; // сохраняем список заголовков исходного запроса
 
+  console.log(`Origin: ${origin} / method: ${method} / req headers: ${requestHeaders}`);
   // res.header('Access-Control-Allow-Origin', '*'); // allow all simple requests
   if (allowedCors.includes(origin)) { // проверяем, что источник запроса есть среди разрешённых
+    console.log(`Request ${origin} is allowed: ${allowedCors.includes(origin)}`);
     res.header('Access-Control-Allow-Origin', origin); // устанавливаем заголовок, разрешающий запросы с этого источника
   }
   if (method === 'OPTIONS') { // Если это предварительный запрос, добавляем нужные заголовки
