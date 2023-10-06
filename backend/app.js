@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 /* Crash test middleware */
 if (NODE_ENV.toLowerCase() !== 'production' || CRASH_TEST.toLowerCase() === 'on') {
   const curDate = new Date();
-  console.log(`${curDate.toDateString()}: Crash test ${CRASH_TEST} 4 mode ${NODE_ENV} started with path ${crashTestRoute}`);
+  console.log(`${curDate.toLocaleString()}: Crash test ${CRASH_TEST} 4 mode ${NODE_ENV} started with path ${crashTestRoute}`);
   app.get(crashTestRoute, () => {
     setTimeout(() => {
       throw new Error('Сервер сейчас упадёт');
