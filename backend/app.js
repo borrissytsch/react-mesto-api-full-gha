@@ -52,14 +52,15 @@ app.use((req, res, next) => {
 /* ------ CORS middleware ends ------------ */
 
 /* Crash test middleware */
-if (NODE_ENV.toLowerCase() !== 'production' || CRASH_TEST.toLowerCase() === 'on') {
-  console.log(`Crash test ${CRASH_TEST} 4 mode ${NODE_ENV} started with path ${crashTestRoute}`);
-  app.get(crashTestRoute, () => {
-    setTimeout(() => {
-      throw new Error('Сервер сейчас упадёт');
-    }, 0);
-  });
-}
+
+// if (NODE_ENV.toLowerCase() !== 'production' || CRASH_TEST.toLowerCase() === 'on') {
+console.log(`Crash test ${CRASH_TEST} 4 mode ${NODE_ENV} started with path ${crashTestRoute}`);
+app.get(crashTestRoute, () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+// }
 
 app.post('/signin', signJoiTest(), login);
 app.post('/signup', signJoiTest(), createUser);
