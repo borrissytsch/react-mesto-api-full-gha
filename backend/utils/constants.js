@@ -31,6 +31,10 @@ const signInRoute = '/signin';
 const signUpRoute = '/signup';
 const crashTestRoute = '/crash-test';
 
+/* Logging config consts */
+const reqLogFName = 'request.log';
+const errLogFName = 'error.log';
+
 /* User model config consts */
 const strSchMinLen = 2;
 const strSchMaxLen = 30;
@@ -107,6 +111,8 @@ module.exports = {
   NODE_ENV,
   CRASH_TEST,
   crashTestRoute,
+  reqLogFName,
+  errLogFName,
   userDirs,
   cardDirs,
   userRoutes,

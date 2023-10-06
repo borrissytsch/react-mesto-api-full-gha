@@ -7,6 +7,7 @@ const { errors } = require('celebrate');
 const auth = require('./middlewares/auth');
 const { signJoiTest } = require('./middlewares/joiValidate');
 const errHandle = require('./middlewares/errHandle');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const {
@@ -52,7 +53,6 @@ app.use((req, res, next) => {
 /* ------ CORS middleware ends ------------ */
 
 /* Crash test middleware */
-
 if (NODE_ENV.toLowerCase() !== 'production' || CRASH_TEST.toLowerCase() === 'on') {
   console.log(`Crash test ${CRASH_TEST} 4 mode ${NODE_ENV} started with path ${crashTestRoute}`);
   app.get(crashTestRoute, () => {
@@ -61,7 +61,7 @@ if (NODE_ENV.toLowerCase() !== 'production' || CRASH_TEST.toLowerCase() === 'on'
     }, 0);
   });
 }
-
+app.use(requestLogger); // логгер запросов
 app.post('/signin', signJoiTest(), login);
 app.post('/signup', signJoiTest(), createUser);
 
@@ -78,6 +78,7 @@ app.patch('/*', (req, res) => {
   }
 });
 
+app.use(errorLogger); // логгер ошибок
 app.use(errors());
 app.use(errHandle);
 app.listen(PORT, () => {
