@@ -34,10 +34,10 @@ app.use((req, res, next) => {
   const requestHeaders = req.headers['access-control-request-headers']; // сохраняем список заголовков исходного запроса
 
   console.log(`Origin: ${origin} / method: ${method} / req headers: ${requestHeaders}`);
-  // res.header('Access-Control-Allow-Origin', '*'); // allow all simple requests
+  res.header('Access-Control-Allow-Origin', '*'); // allow all simple requests
   if (allowedCors.includes(origin)) { // проверяем, что источник запроса есть среди разрешённых
     console.log(`Request ${origin} is allowed: ${allowedCors.includes(origin)}`);
-    res.header('Access-Control-Allow-Origin', origin); // устанавливаем заголовок, разрешающий запросы с этого источника
+    // res.header('Access-Control-Allow-Origin', origin); // устанавливаем заголовок, разрешающий запросы с этого источника
   }
   if (method === 'OPTIONS') { // Если это предварительный запрос, добавляем нужные заголовки
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS); // разрешаем кросс-доменные запросы любых типов (по умолчанию)
