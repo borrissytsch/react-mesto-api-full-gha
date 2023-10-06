@@ -23,6 +23,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => logger(req, res, next, true));
+/* ------ CORS middleware starts ------------ */
+const allowedCors = [ // Массив доменов, с которых разрешены кросс-доменные запросы
+  'localhost:3000',
+];
+app.use((req, res, next) => {
+  const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
+  if (allowedCors.includes(origin)) { // проверяем, что источник запроса есть среди разрешённых
+    res.header('Access-Control-Allow-Origin', origin); // устанавливаем заголовок, разрешающий запросы с этого источника
+  }
+  next();
+});
+/* ------ CORS middleware ends ------------ */
+
 app.post('/signin', signJoiTest(), login);
 app.post('/signup', signJoiTest(), createUser);
 
