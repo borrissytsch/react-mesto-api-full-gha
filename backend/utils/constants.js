@@ -7,6 +7,8 @@ const {
   CARDS_ROUTE: CARDS = '/cards',
   MONGODB = 'mongodb://127.0.0.1:27017/mestodb',
   TOKEN_KEY = 'DEMO ===== some-secret-key ==== DEMO',
+  NODE_ENV = 'production',
+  CRASH_TEST = 'on',
 } = process.env;
 // Server routing consts
 const userDirs = { id: 'userId', profile: 'me', avatar: 'avatar' };
@@ -27,6 +29,8 @@ const cardRoutes = {
 };
 const signInRoute = '/signin';
 const signUpRoute = '/signup';
+const crashTestRoute = '/crash-test';
+
 /* User model config consts */
 const strSchMinLen = 2;
 const strSchMaxLen = 30;
@@ -37,6 +41,12 @@ const usrAbout = 'Исследователь';
 const usrAvatar = 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png';
 const usrEmailFailMsg = 'Field typed is not a valid e-mail address';
 const usrLinkFailMsg = 'Incorrect link address';
+
+/* CORS config consts */
+const allowedCors = [ // Массив доменов, с которых разрешены кросс-доменные запросы
+  'localhost:3000', 'localhost:3000/signup', 'localhost:3000/signin', 'http://localhost:3000',
+];
+const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE'; // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
 
 /* User auth config consts */
 const tokenDuration = '7d';
@@ -94,6 +104,9 @@ module.exports = {
   USERS,
   CARDS,
   MONGODB,
+  NODE_ENV,
+  CRASH_TEST,
+  crashTestRoute,
   userDirs,
   cardDirs,
   userRoutes,
@@ -109,6 +122,8 @@ module.exports = {
   usrAvatar,
   usrEmailFailMsg,
   usrLinkFailMsg,
+  allowedCors,
+  DEFAULT_ALLOWED_METHODS,
   TOKEN_KEY,
   tokenDuration,
   authHeaderPattern,
