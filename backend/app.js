@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => logger(req, res, next, true));
 /* ------ CORS middleware starts ------------ */
 const allowedCors = [ // Массив доменов, с которых разрешены кросс-доменные запросы
-  'localhost:3000',
+  'localhost:3000', 'localhost:3000/signup', 'localhost:3000/signin',
 ];
 app.use((req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
@@ -33,9 +33,9 @@ app.use((req, res, next) => {
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE'; // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
   const requestHeaders = req.headers['access-control-request-headers']; // сохраняем список заголовков исходного запроса
 
-  res.header('Access-Control-Allow-Origin', '*'); // allow all simple requests
+  // res.header('Access-Control-Allow-Origin', '*'); // allow all simple requests
   if (allowedCors.includes(origin)) { // проверяем, что источник запроса есть среди разрешённых
-    // res.header('Access-Control-Allow-Origin', origin); // устанавливаем заголовок, разрешающий запросы с этого источника
+    res.header('Access-Control-Allow-Origin', origin); // устанавливаем заголовок, разрешающий запросы с этого источника
   }
   if (method === 'OPTIONS') { // Если это предварительный запрос, добавляем нужные заголовки
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS); // разрешаем кросс-доменные запросы любых типов (по умолчанию)
