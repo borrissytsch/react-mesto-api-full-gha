@@ -24,11 +24,9 @@ app.use(bodyParser.json());
 // app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const curDate = new Date();
 app.use((req, res, next) => logger(req, res, next, true));
 /* ------ CORS middleware starts ------------ */
-// const allowedCors = [ // Массив доменов, с которых разрешены кросс-доменные запросы
-//  'localhost:3000', 'localhost:3000/signup', 'localhost:3000/signin', 'http://localhost:3000',
-// ]; // Ушло в константы, поскольку хосты надо будет постоянно дополнять, когда затнётся
 app.use((req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
@@ -36,14 +34,14 @@ app.use((req, res, next) => {
   // Ушло в константы, наверное, надо установить в .env'e
   const requestHeaders = req.headers['access-control-request-headers']; // сохраняем список заголовков исходного запроса
 
-  console.log(`Origin: ${origin} / method: ${method} / req headers: ${requestHeaders}`);
+  console.log(`${curDate.toISOString()} Origin: ${origin} / method: ${method} / req headers: ${requestHeaders}`);
   // res.header('Access-Control-Allow-Origin', '*'); // allow all requests, del after debug end
   if (allowedCors.includes(origin)) { // проверяем, что источник запроса есть среди разрешённых
-    console.log(`Request ${origin} is allowed: ${allowedCors.includes(origin)}`);
+    console.log(`${curDate.toISOString()} Request ${origin} is allowed: ${allowedCors.includes(origin)}`);
     res.header('Access-Control-Allow-Origin', origin); // устанавливаем заголовок, разрешающий запросы с этого источника
   }
   if (method === 'OPTIONS') { // Если это предварительный запрос, добавляем нужные заголовки
-    console.log(`Methods 4 preflights: ${requestHeaders}`);
+    console.log(`${curDate.toISOString()} Methods 4 preflights: ${requestHeaders}`);
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS); // разрешаем кросс-доменные запросы любых типов (по умолчанию)
     res.header('Access-Control-Allow-Headers', requestHeaders); // разрешаем кросс-доменные запросы с этими заголовками
     return res.end(); // завершаем обработку запроса и возвращаем результат клиенту
@@ -54,8 +52,7 @@ app.use((req, res, next) => {
 
 /* Crash test middleware */
 if (NODE_ENV.toLowerCase() !== 'production' || CRASH_TEST.toLowerCase() === 'on') {
-  const curDate = new Date();
-  console.log(`${curDate.toLocaleString()}: Crash test ${CRASH_TEST} 4 mode ${NODE_ENV} started with path ${crashTestRoute}`);
+  console.log(`${curDate.toISOString()}: Crash test ${CRASH_TEST} 4 mode ${NODE_ENV} started with path ${crashTestRoute}`);
   app.get(crashTestRoute, () => {
     setTimeout(() => {
       throw new Error('Сервер сейчас упадёт');
@@ -74,7 +71,7 @@ app.patch('/*', (req, res) => {
   try {
     throw new Error("Path 2 be processed doesn't exist");
   } catch (err) {
-    logPassLint(`Error ${errNotFound.num}: ${err}`, true);
+    logPassLint(`${curDate.toISOString()} Error ${errNotFound.num}: ${err}`, true);
     res.status(errNotFound.num).send({ message: errNotFound.msg });
   }
 });
@@ -83,7 +80,7 @@ app.use(errorLogger); // логгер ошибок
 app.use(errors());
 app.use(errHandle);
 app.listen(PORT, () => {
-  logPassLint(`App listening on port ${PORT}`, true);
+  logPassLint(`${curDate.toISOString()} App listening on port ${PORT}`, true);
 });
 
 module.exports.createCard = (req) => {
