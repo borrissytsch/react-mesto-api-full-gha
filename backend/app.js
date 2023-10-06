@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => logger(req, res, next, true));
 /* ------ CORS middleware starts ------------ */
 const allowedCors = [ // Массив доменов, с которых разрешены кросс-доменные запросы
-  'localhost:3000', 'localhost:3000/signup', 'localhost:3000/signin',
+  'localhost:3000', 'localhost:3000/signup', 'localhost:3000/signin', 'http://localhost:3000',
 ];
 app.use((req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
