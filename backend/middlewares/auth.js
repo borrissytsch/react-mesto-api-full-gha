@@ -12,6 +12,7 @@ module.exports = (req, res, next) => {
       .status(errAuth.num).send({ message: authNeedMsg });
   }
   const token = authorization.replace(authHeaderPattern, '');
+  console.log(`Token from header before verify: ${token}`);
   let payload;
   try {
     payload = jwt.verify(token, TOKEN_KEY); // верифицируем токен

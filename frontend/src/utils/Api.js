@@ -9,8 +9,10 @@ constructor (loginData) {
 }
 
   autorize(dir = this._userDir, handler = this._retPromiseResponse, request = 'GET') {
+    console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${this._serverLogin(dir)}`);
     return fetch(this._serverLogin(dir), {method: request
-      , headers: {authorization: this._serverToken}
+    //  , headers: {authorization: this._serverToken} // изменено 7 окт. 2023 при поиске ошибки авторизации
+      , headers: {authorization: localStorage.getItem('token')}
     }).then((res, msg = `${dir} autorize ${request} `) => handler(res, msg));
   }
 
@@ -24,8 +26,10 @@ constructor (loginData) {
   }
 
   updateProfile(userData, dir = this._userDir, handler = this._retPromiseResponse, request = 'PATCH') {
+    console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${this._serverLogin(dir)}`);
     return fetch(this._serverLogin(dir), {method: request
-      , headers: {authorization: this._serverToken
+    //  , headers: {authorization: this._serverToken // изменено 7 окт. 2023 при поиске ошибки авторизации
+      , headers: {authorization: localStorage.getItem('token')
       , 'Content-Type': 'application/json'
       }
       , body: JSON.stringify(userData)

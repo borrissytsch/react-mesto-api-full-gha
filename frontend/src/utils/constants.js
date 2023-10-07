@@ -47,7 +47,7 @@ export const srvLoginData = {login: (dir) =>`http://borrissytsch-practicum.nomor
   , userDir: 'users/me'
 };
 export const userAuthData = {signupPsw: 'somepassword', signupMail: 'email@yandex.ru', signinPsw: 'dsfsdfsdfsdf'
-  , signinMail: 'email@email.ru', userDir: 'users/me'
+  , signinMail: 'em@em.ru', userDir: 'users/me'
 };
 
 /* React config vars */

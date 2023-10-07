@@ -6,7 +6,7 @@ const {
   USERS_ROUTE: USERS = '/users',
   CARDS_ROUTE: CARDS = '/cards',
   MONGODB = 'mongodb://127.0.0.1:27017/mestodb',
-  TOKEN_KEY = 'DEMO ===== some-secret-key ==== DEMO',
+  TOKEN_KEY = 'DEMO_=====_some-secret-key_====_DEMO',
   NODE_ENV = 'production',
   CRASH_TEST = 'on',
 } = process.env;
