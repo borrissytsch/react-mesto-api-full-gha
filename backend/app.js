@@ -28,8 +28,8 @@ const curDate = new Date();
 app.use((req, res, next) => logger(req, res, next, true));
 /* ------ CORS middleware starts ------------ */
 app.use((req, res, next) => {
-  const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
-  const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
+  const { origin } = req.headers; // Сохраняем источник запроса
+  const { method } = req; // Сохраняем тип запроса (HTTP-метод)
   // const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   // Ушло в константы, наверное, надо установить в .env'e
   const requestHeaders = req.headers['access-control-request-headers']; // сохраняем список заголовков исходного запроса

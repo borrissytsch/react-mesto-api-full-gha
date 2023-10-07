@@ -49,7 +49,9 @@ const usrLinkFailMsg = 'Incorrect link address';
 /* CORS config consts */
 const allowedCors = [ // Массив доменов, с которых разрешены кросс-доменные запросы
   'localhost:3000', 'localhost:3000/signup', 'localhost:3000/signin', 'http://localhost:3000',
-  'http://localhost:3000/app', 'localhost:3000/app',
+  'http://localhost:3000/app', 'localhost:3000/app', 'http://localhost:3000/users', 'localhost:3000/users',
+  'http://localhost:3000/users/me', 'localhost:3000/users/me',
+  'http://localhost:3000/users/avatar', 'localhost:3000/users/avatar', 'http://localhost:3000/users/cards', 'localhost:3000/users/cards',
 ];
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE'; // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
 
