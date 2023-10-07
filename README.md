@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 84.252.138.37
+IP 84.252.138.37
 
 Frontend http://borrissytsch-mesto.nomoredomainsrocks.ru/
 
