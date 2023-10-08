@@ -41,7 +41,7 @@ app.use((req, res, next) => {
     ${allowedCors.includes(origin)}`); */
     res.header('Access-Control-Allow-Origin', origin); // устанавливаем заголовок, разрешающий запросы с этого источника
   }
-  if (method === 'OPTIONS') { // Если это предварительный запрос, добавляем нужные заголовки
+  if (method === 'OPTIONS') { // Для предварительного запроса, добавляем нужные заголовки
     // console.log(`${curDate.toISOString()} Methods 4 preflights: ${requestHeaders}`);
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS); // разрешаем кросс-доменные запросы любых типов (по умолчанию)
     res.header('Access-Control-Allow-Headers', requestHeaders); // разрешаем кросс-доменные запросы с этими заголовками
