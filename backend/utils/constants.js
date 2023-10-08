@@ -48,6 +48,13 @@ const usrLinkFailMsg = 'Incorrect link address';
 
 /* CORS config consts */
 const allowedCors = [ // Массив доменов, с которых разрешены кросс-доменные запросы
+  'borrissytsch-mesto.nomoredomainsrocks.ru', 'https://borrissytsch-mesto.nomoredomainsrocks.ru',
+  'borrissytsch-mesto.nomoredomainsrocks.ru/signin', 'https://borrissytsch-mesto.nomoredomainsrocks.ru/signin',
+  'borrissytsch-mesto.nomoredomainsrocks.ru/signup', 'https://borrissytsch-mesto.nomoredomainsrocks.ru/signup',
+  'borrissytsch-mesto.nomoredomainsrocks.ru/users', 'https://borrissytsch-mesto.nomoredomainsrocks.ru/users',
+  'borrissytsch-mesto.nomoredomainsrocks.ru/users/me', 'https://borrissytsch-mesto.nomoredomainsrocks.ru/users/me',
+  'borrissytsch-mesto.nomoredomainsrocks.ru/users/avatar', 'https://borrissytsch-mesto.nomoredomainsrocks.ru/users/avatar',
+  'borrissytsch-mesto.nomoredomainsrocks.ru/cards', 'https://borrissytsch-mesto.nomoredomainsrocks.ru/cards',
   'localhost:3000', 'localhost:3000/signup', 'localhost:3000/signin', 'http://localhost:3000',
   'http://localhost:3000/app', 'localhost:3000/app', 'http://localhost:3000/users', 'localhost:3000/users',
   'http://localhost:3000/users/me', 'localhost:3000/users/me',
