@@ -5,7 +5,7 @@ const {
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers; // достаём авторизационный заголовок
-  console.log(`Auth starts: ${authorization}`);
+  console.log(`Auth starts: ${authorization} / Bearer should be first`);
   // заголовок есть и начинается с Bearer - выкидываем Bearer и верифицируем токен; иначе - ошибка
   if (!authorization || !authorization.startsWith(authHeaderPattern)) {
     return res
