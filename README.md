@@ -11,6 +11,6 @@
 
 IP 84.252.138.37
 
-Frontend http://borrissytsch-mesto.nomoredomainsrocks.ru/
+Frontend https://borrissytsch-mesto.nomoredomainsrocks.ru/
 
-Backend http://borrissytsch-practicum.nomoredomainsrocks.ru/
+Backend https://borrissytsch-practicum.nomoredomainsrocks.ru/
