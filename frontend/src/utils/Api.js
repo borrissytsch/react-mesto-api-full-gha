@@ -4,15 +4,15 @@ export class Api {
 //#userDir;
 constructor (loginData) {
   this._serverLogin = (dir) => loginData.login (dir);
-  this._serverToken = loginData.token;
+  // this._serverToken = loginData.token;
   this._userDir = loginData.userDir;
 }
 
   autorize(dir = this._userDir, handler = this._retPromiseResponse, request = 'GET') {
-    console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${this._serverLogin(dir)}`);
+    console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${request} ${this._serverLogin(dir)}`);
     return fetch(this._serverLogin(dir), {method: request
-    , headers: {authorization: localStorage.getItem('token')}
-    // , headers: {authorization: `Bearer ${localStorage.getItem('token')}`} // @ 08/10/2023 seek auth error
+    // , headers: {authorization: localStorage.getItem('token')}
+    , headers: {authorization: 'GET' ? localStorage.getItem('token') : `Bearer ${localStorage.getItem('token')}`} // @ 08/10/2023 seek auth error
     }).then((res, msg = `${dir} autorize ${request} `) => handler(res, msg));
   }
 
@@ -29,7 +29,7 @@ constructor (loginData) {
     console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${this._serverLogin(dir)}`);
     return fetch(this._serverLogin(dir), {method: request
     //, headers: {authorization: localStorage.getItem('token')
-     , headers: {authorization: `Bearer ${localStorage.getItem('token')}`
+      , headers: {authorization: `Bearer ${localStorage.getItem('token')}`
       , 'Content-Type': 'application/json'
       }
       , body: JSON.stringify(userData)
