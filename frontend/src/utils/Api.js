@@ -12,8 +12,8 @@ constructor (loginData) {
     console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${this._serverLogin(dir)}`);
     return fetch(this._serverLogin(dir), {method: request
     // , headers: {authorization: this._serverToken} // изменено 7 окт. 2023 при поиске ошибки авторизации
-    // , headers: {authorization: localStorage.getItem('token')}
-    , headers: {authorization: `Bearer ${localStorage('token')}`} // @ 08/10/2023 seek auth error
+    , headers: {authorization: localStorage.getItem('token')}
+    //, headers: {authorization: `Bearer ${localStorage('token')}`} // @ 08/10/2023 seek auth error
     }).then((res, msg = `${dir} autorize ${request} `) => handler(res, msg));
   }
 
@@ -30,9 +30,8 @@ constructor (loginData) {
     console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${this._serverLogin(dir)}`);
     return fetch(this._serverLogin(dir), {method: request
     //  , headers: {authorization: this._serverToken // изменено 7 окт. 2023 при поиске ошибки авторизации
-    // , headers: {authorization: localStorage.getItem('token')
-    , headers: {authorization: `Bearer ${localStorage('token')}`
-    
+     , headers: {authorization: localStorage.getItem('token')
+    //, headers: {authorization: `Bearer ${localStorage('token')}`
       , 'Content-Type': 'application/json'
       }
       , body: JSON.stringify(userData)
