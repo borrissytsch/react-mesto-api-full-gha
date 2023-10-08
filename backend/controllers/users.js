@@ -7,7 +7,7 @@ const ValidationErr = require('../errors/ValidationError');
 const ServerError = require('../errors/ServerError');
 const {
   errIncorrectData, errNotFound, errDefault, errValidationErr,
-  errAuth, errIllegalArgsPattern, pswSoltLen, TOKEN_KEY,
+  errAuth, errIllegalArgsPattern, pswSoltLen, TOKEN_KEY, // NODE_ENV,
   tokenDuration,
 } = require('../utils/constants');
 const { logPassLint, handleIdErr } = require('../utils/miscutils');
@@ -141,17 +141,17 @@ function login(req, res) {
   const { email, password } = req.body;
 
   return User.findUserByCredentials(email, password).then((user) => { // в token надо user._id
-    // console.log(`Credentials user: ${user}`);
+    console.log(`Credentials user: ${user}`); // Здeсь терн опер для dev/prod tokens
     const token = jwt.sign({ _id: user._id }, TOKEN_KEY, { expiresIn: tokenDuration });
-    // console.log(`Token: ${token}`);
+    console.log(`User credentials token: ${token}`);
     res.send({ token }); // сделать запись JWT в httpOnly куку: если не пройдёт - откатить
     /* res.cookie('jwt', token, {
       // maxAge: tokenDuration, // make function 4 token in sec & so on 2 ms (ms m h d)
       maxAge: 3600000 * 24 * 7, // add a piece 4 token transfer duration
       httpOnly: true,
     }).end(); */
-  }).catch((/* err */) => {
-    // console.log(`Login error ${err.name}: ${err}`);
+  }).catch((err) => {
+    console.log(`User credentials login error ${err.name}: ${err}`);
     res.status(errAuth.num).send({ message: errAuth.msg });
   });
 }

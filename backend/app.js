@@ -43,7 +43,7 @@ app.use((req, res, next) => {
     // устанавливаем заголовок, разрешающий запросы с этого источника
   }
   if (method === 'OPTIONS') { // Для предварительного запроса, добавляем нужные заголовки
-    // console.log(`${curDate.toISOString()} Methods 4 preflights: ${requestHeaders}`);
+    console.log(`${curDate.toISOString()} Methods 4 preflights: ${requestHeaders}`);
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS); // разрешаем кросс-доменные запросы любых типов (по умолчанию)
     res.header('Access-Control-Allow-Headers', requestHeaders); // разрешаем кросс-доменные запросы с этими заголовками
     return res.end(); // завершаем обработку запроса и возвращаем результат клиенту
@@ -54,7 +54,9 @@ app.use((req, res, next) => {
 
 /* Crash test middleware */
 if (NODE_ENV.toLowerCase() !== 'production' || CRASH_TEST.toLowerCase() === 'on') {
-  console.log(`${curDate.toISOString()}: Crash test ${CRASH_TEST} 4 mode ${NODE_ENV} started with path ${crashTestRoute}`);
+  /* console.log(
+`${curDate.toISOString()}: Crash test ${CRASH_TEST} 4 mode ${NODE_ENV} started with path
+ ${crashTestRoute}`); */
   app.get(crashTestRoute, () => {
     setTimeout(() => {
       throw new Error('Сервер сейчас упадёт');
