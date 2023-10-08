@@ -40,13 +40,13 @@ export const signPageCaptions = {inTitle: "Вход", regTitle: "Регистр�
 };
 
 /* Servers' data config */
-export const srvAuthData = {auth: (dir) =>`http://borrissytsch-practicum.nomoredomainsrocks.ru/${dir}`, signin: 'signin',  signup: 'signup'
+export const srvAuthData = {auth: (dir) =>`https://borrissytsch-practicum.nomoredomainsrocks.ru/${dir}`, signin: 'signin',  signup: 'signup'
   , userDir: 'users/me'
 };
-export const srvLoginData = {login: (dir) =>`http://borrissytsch-practicum.nomoredomainsrocks.ru/${dir}`, token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTIwMzJhZDBmYjBjZTZlZDkxNTc0YTMiLCJpYXQiOjE2OTY2MDkwMDAsImV4cCI6MTY5NzIxMzgwMH0.wmGm6aPq81Q_zBAL0-SGPr7I_NSYeJ_0GAfr7DRDDgA'
+export const srvLoginData = {login: (dir) =>`https://borrissytsch-practicum.nomoredomainsrocks.ru/${dir}`, token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTIwMzJhZDBmYjBjZTZlZDkxNTc0YTMiLCJpYXQiOjE2OTY2MDkwMDAsImV4cCI6MTY5NzIxMzgwMH0.wmGm6aPq81Q_zBAL0-SGPr7I_NSYeJ_0GAfr7DRDDgA'
   , userDir: 'users/me'
 };
-export const userAuthData = {signupPsw: 'somepassword', signupMail: 'email@yandex.ru', signinPsw: 'dsfsdfsdfsdf'
+export const userAuthData = {signupPsw: 'email@yandex.ru', signupMail: 'email@yandex.ru', signinPsw: 'em@em.ru'
   , signinMail: 'em@em.ru', userDir: 'users/me'
 };
 
