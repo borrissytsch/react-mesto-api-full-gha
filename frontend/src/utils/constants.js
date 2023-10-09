@@ -32,7 +32,7 @@
 }];
 
 /* Authentification & routes react config */
-export const authRoutes = {signin: "signin", signup: "signup", app: "" /*, app: "app"  @09/10/23 4 auth*/};
+export const authRoutes = {signin: "signin", signup: "signup", app: "app"};
 export const authFormIds = {signin: "inform", signup: "regform"};
 export const signPageCaptions = {inTitle: "Вход", regTitle: "Регистрация", btnEnterCaption: "Войти"
   , btnRegCaption: "Зарегистрироваться", outCaption: "Выйти", tooltipErrCaption: "Что-то пошло не так! Попробуйте ещё раз."
