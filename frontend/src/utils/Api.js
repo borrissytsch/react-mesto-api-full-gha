@@ -12,8 +12,8 @@ constructor (loginData) {
     console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${request} ${this._serverLogin(dir)}`);
     return fetch(this._serverLogin(dir), {method: request
       , headers: {'Content-Type': 'application/json'
-      , Authorization: 'GET' ? localStorage.getItem('token') : `Bearer ${localStorage.getItem('token')}`
-      // , Authorization: `Bearer ${localStorage.getItem('token')}`
+      // , Authorization: 'GET' ? localStorage.getItem('token') : `Bearer ${localStorage.getItem('token')}`
+      , Authorization: `Bearer ${localStorage.getItem('token')}`
       } // @ 08/10/2023 seek auth error
     }).then((res, msg = `${dir} autorize ${request} `) => handler(res, msg));
   }
