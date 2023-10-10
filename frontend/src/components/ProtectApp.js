@@ -118,6 +118,7 @@ export default function ProtectApp({startApp}) {
       alert(`ProtectApp card likes result: ${result}`);
       console.log(`ProtectApp card likes result: ${result}`);
       setCards(cards => cards.map(item => item._id === card._id ? result : item));
+      window.location.reload(); // added 10/10/23 to seek hung redraw
     }).catch(err => console.log(errMsg4CardLikeAdd(err)))
   }
 
