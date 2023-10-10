@@ -14,11 +14,14 @@ export function Login ({loggedIn, startApp, handleToolTipOpen}) {
   if (loggedIn) navigate(`/${app}`);
 
   function handleRegForm (evt, {email , password}) {
+    alert(`handleRegForm trace err: ${email} & ${password} entered`);
+    console.log(`handleRegForm trace err: ${email} & ${password} entered`);
     evt.preventDefault();
     mestAuth.authorize({email, password}, srvAuthData.signin).then(result => {
       if (result.token) {
         localStorage.setItem('token', result.token);
-        console.log(`Login token is: ${result.token}`)
+        console.log(`handleRegForm trace err, login token is: ${result.token}`);
+        alert(`handleRegForm trace err, login token is: ${result.token}`);
         return result.token;
       } else {
         console.log(`Token has not been received from server, result keys are: ${Object.keys(result).join('/')}`); // alert(`token has not been received from server, result keys are: ${Object.keys(result).join('/')}`)

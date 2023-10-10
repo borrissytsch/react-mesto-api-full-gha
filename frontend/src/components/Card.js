@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
 import {cardSettings} from '../utils/constants.js';
 export default function Card({card, onCardClick, onCardLike, onCardDelete}) {
-  const {name, about, avatar, _id, cohort} = React.useContext(CurrentUserContext);
+  const {name, about, avatar, _id/*, cohort*/} = React.useContext(CurrentUserContext);
   const { trashActiveClass: trashActive
     , likeIconClass: likeIcon, likenActiveClass: likenActive
   } = cardSettings;
   const isOwn = card.owner._id === _id;
   const isLiked = card.likes.some(i => i._id === _id);
-
+  console.log(`Cards trash: isOwn/Liked-${isOwn}/${isLiked} 4 _id ${_id} of ${name}/${about} // owner: ${card.owner._id}`);
+  alert(`Cards trash: isOwn/Liked-${isOwn}/${isLiked} 4 _id ${_id} of ${name}/${about} // owner: ${card.owner._id}`);
   function handleClick(evt) {
     onCardClick(evt, undefined, card);
   }
