@@ -40,10 +40,12 @@ export default function ProtectApp({startApp}) {
 
   useEffect(() => {
     Promise.all([mestApi.autorize(), mestApi.getInitialCards()]).then(result => {
-      alert(`Api auth passed: ${Object.entries(result[0]).join('; ')} // cards are: ${Object.entries(result[1]).join('; ')}`);
-      console.log(`Api auth passed: ${result[0]} // cards are: ${result[1]}`);
-      setCurrentUser(result[0]); // , id: result[0]._id, cohort: result[0].cohort
-      setCards(result[1]);
+      alert(`Api auth passed: ${Object.entries(result[0].data).join('; ')} // cards are: ${Object.entries(result[1].data).join('; ')}`);
+      console.log(`Api auth passed: ${result[0].data} // cards are: ${result[1].data}`);
+      // setCurrentUser(result[0]); // commented @ 10/10/23 seek map err , id: result[0]._id, cohort: result[0].cohort
+      setCurrentUser(result[0].data); // added @ 10/10/23 seek map err
+      // setCards(result[1]);
+      setCards(result[1].data);
     }).catch(err => console.log(errMsg4GetCardsInfo(err)));
   }, []);
 
