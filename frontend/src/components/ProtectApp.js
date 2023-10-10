@@ -40,6 +40,8 @@ export default function ProtectApp({startApp}) {
 
   useEffect(() => {
     Promise.all([mestApi.autorize(), mestApi.getInitialCards()]).then(result => {
+      alert(`Api auth passed: ${result[0]} // cards are: ${result[1]}`);
+      console.log(`Api auth passed: ${result[0]} // cards are: ${result[1]}`);
       setCurrentUser(result[0]); // , id: result[0]._id, cohort: result[0].cohort
       setCards(result[1]);
     }).catch(err => console.log(errMsg4GetCardsInfo(err)));
