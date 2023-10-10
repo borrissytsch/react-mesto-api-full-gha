@@ -10,7 +10,7 @@ constructor (loginData) {
 
   autorize(dir = this._userDir, handler = this._retPromiseResponse, request = 'GET') {
     const localToken = localStorage.getItem('token');
-    console.log(`Api got token 4 auth: ${localToken} 4 ${request} ${this._serverLogin(dir)}`);
+    // console.log(`Api got token 4 auth: ${localToken} 4 ${request} ${this._serverLogin(dir)}`);
     const fetchOptions = !localToken ? {method: request} : {method: request
       , headers: {'Content-Type': 'application/json'
       , 'Authorization': `Bearer ${localToken}`
@@ -18,13 +18,6 @@ constructor (loginData) {
     return fetch(this._serverLogin(dir),fetchOptions).then((res, msg = `${dir} autorize ${request} `) => 
       handler(res, msg)
     );
-
-   /* return fetch(this._serverLogin(dir), {method: request
-      , headers: {'Content-Type': 'application/json'
-      , Authorization: 'GET' ? localStorage.getItem('token') : `Bearer ${localStorage.getItem('token')}`
-      // , Authorization: `Bearer ${localStorage.getItem('token')}`
-      } // @ 08/10/2023 seek auth error 
-    }).then((res, msg = `${dir} autorize ${request} `) => handler(res, msg));*/
   }
 
   _retPromiseResponse(res, errMsg = '', theOnlyMsg_flag = false) {
@@ -37,7 +30,7 @@ constructor (loginData) {
   }
 
   updateProfile(userData, dir = this._userDir, handler = this._retPromiseResponse, request = 'PATCH') {
-    console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${request} ${this._serverLogin(dir)}`);
+    // console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${request} ${this._serverLogin(dir)}`);
     return fetch(this._serverLogin(dir), {method: request
     //, headers: {authorization: localStorage.getItem('token')
       , headers: {authorization: `Bearer ${localStorage.getItem('token')}`
