@@ -19,7 +19,7 @@ import {avatarProp, profileProp, cardProp, confirmProp, popupActiveClass
 
 export default function ProtectApp({startApp}) {
   const loggedMail = useContext(LoggedInContext);
-  const [currentUser, setCurrentUser] = useState({name: "Жак-Ив Кусто"
+  const [currentUser, setCurrentUser] = useState({name: "Жак-Ив Кусто, однако"
     , about: "Исследователь океана"
     , avatar: "https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg"
   });

@@ -11,7 +11,7 @@ constructor (loginData) {
   autorize(dir = this._userDir, handler = this._retPromiseResponse, request = 'GET') {
     const localToken = localStorage.getItem('token');
     console.log(`Api got token 4 auth: ${localToken} 4 ${request} ${this._serverLogin(dir)}`);
-    const fetchOptions = localToken ? {method: request} : {method: request
+    const fetchOptions = !localToken ? {method: request} : {method: request
       , headers: {'Content-Type': 'application/json'
       , Authorization: `Bearer ${localToken}`
     }};

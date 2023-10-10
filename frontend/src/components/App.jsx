@@ -33,7 +33,7 @@ export default function App() {
     if (checkTokenRes) {
     setLoggedIn(true);
     setLoggedMail(checkTokenRes.data.email);
-    window.location.reload(); // @ 10/10/23 2 reload after form submit
+    // window.location.reload(); // @ 10/10/23 2 reload after form submit
    } else {
     setLoggedIn(false); setLoggedMail('');
    }
