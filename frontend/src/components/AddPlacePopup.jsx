@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect/*, useState*/ } from 'react';
 import PopupWithForm from './PopupWithForm'
 import useFormInputs from '../hooks/useFormInputs';
 import {cardProp} from '../utils/constants';

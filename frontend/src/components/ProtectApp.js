@@ -45,30 +45,6 @@ export default function ProtectApp({startApp}) {
     }).catch(err => console.log(errMsg4GetCardsInfo(err)));
   }, []);
 
-  return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <Header routeLink={`/${signin}`} signCaption={outCaption} startApp={startApp}>
-        <span>{loggedMail}</span>
-      </Header>
-      <Main clickHandlers={clickHandlers} formName={formName} onClose={closeAllPopups} cards={cards}
-        onCardLike={handleCardLike} onCardDelete={handleCardDelete}
-      />
-      <Footer />
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
-        onUpdateAvatar={handleUpdateAvatar} btnCaption={btnProfileCaption}
-      />
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}
-        onUpdateUser={handleUpdateUser} btnCaption={btnProfileCaption}
-      />
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
-        onAddPlace={handleAddPlaceSubmit} btnCaption={btnCardCaption}
-      />
-      <PopupWithForm isOpen={isConfirmOpen} name={confirmProp} title="Вы уверены?" onClose={closeAllPopups}
-        onSubmit={handleConfirm} btnCaption={captionConfirmButton} />
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} openClass={popupActiveClass} />
-    </CurrentUserContext.Provider>
-  );
-
   function handleEditAvatarClick(evt, setOpen_flag = true) {
     setAvatarOpen(setOpen_flag);
   }
@@ -147,4 +123,28 @@ export default function ProtectApp({startApp}) {
       clickHandlers).forEach(handler => clickHandlers[handler](evt, false, true)
     );
   }
+
+  return (
+    <CurrentUserContext.Provider value={currentUser}>
+      <Header routeLink={`/${signin}`} signCaption={outCaption} startApp={startApp}>
+        <span>{loggedMail}</span>
+      </Header>
+      <Main clickHandlers={clickHandlers} formName={formName} onClose={closeAllPopups} cards={cards}
+        onCardLike={handleCardLike} onCardDelete={handleCardDelete}
+      />
+      <Footer />
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
+        onUpdateAvatar={handleUpdateAvatar} btnCaption={btnProfileCaption}
+      />
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}
+        onUpdateUser={handleUpdateUser} btnCaption={btnProfileCaption}
+      />
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
+        onAddPlace={handleAddPlaceSubmit} btnCaption={btnCardCaption}
+      />
+      <PopupWithForm isOpen={isConfirmOpen} name={confirmProp} title="Вы уверены?" onClose={closeAllPopups}
+        onSubmit={handleConfirm} btnCaption={captionConfirmButton} />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} openClass={popupActiveClass} />
+    </CurrentUserContext.Provider>
+  );
 }
