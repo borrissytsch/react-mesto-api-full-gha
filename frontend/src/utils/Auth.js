@@ -16,7 +16,7 @@ export default class Auth {
     return fetch(this._srvAuth(dir), { method: request, headers: {
         'Content-Type': 'application/json'
         // Сюда не ставить, не работает Main.js
-        , 'Authorization': `Bearer ${localStorage.getItem('token')}`
+        // , 'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
       , body: JSON.stringify({password, email})
     }).then((res, msg = `${email} ${dir} autorize ${request}: `) => handler(res, msg));
