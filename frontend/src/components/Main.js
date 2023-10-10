@@ -5,7 +5,7 @@ import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
 import { errMsg4GetCardsInfo } from '../utils/constants.js'
 
 function Main({clickHandlers, formName, onClose, cards, onCardLike, onCardDelete}) {
-  const {name, about, avatar, _id, cohort} = React.useContext(CurrentUserContext);
+  const {name, about, avatar, _id/*, cohort*/} = React.useContext(CurrentUserContext);
   const userName = name; const userDescription = about; const userAvatar = avatar;
 
   function createCardItems (cards) { 
