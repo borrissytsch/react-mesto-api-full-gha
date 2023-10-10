@@ -13,7 +13,7 @@ constructor (loginData) {
     console.log(`Api got token 4 auth: ${localToken} 4 ${request} ${this._serverLogin(dir)}`);
     const fetchOptions = !localToken ? {method: request} : {method: request
       , headers: {'Content-Type': 'application/json'
-      , Authorization: `Bearer ${localToken}`
+      , 'Authorization': `Bearer ${localToken}`
     }};
     return fetch(this._serverLogin(dir),fetchOptions).then((res, msg = `${dir} autorize ${request} `) => 
       handler(res, msg)
