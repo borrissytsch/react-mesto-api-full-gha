@@ -9,7 +9,7 @@ function Main({clickHandlers, formName, onClose, cards, onCardLike, onCardDelete
   const userName = name; const userDescription = about; const userAvatar = avatar;
 
   function createCardItems (cards) {
-    alert(`Main cards: ${cards.map(card => Object.entries(card).join('; '))}`);
+    // alert(`Main cards: ${cards.map(card => Object.entries(card).join('; '))}`);
     console.log(`Main cards: ${cards.map(card => Object.entries(card).join('; '))}`);
     return cards.map((card, i) => (
       <Card key={`card_${card._id}`} card={card} onCardClick={clickHandlers.onCardClick}
