@@ -9,15 +9,16 @@ constructor (loginData) {
 }
 
   autorize(dir = this._userDir, handler = this._retPromiseResponse, request = 'GET') {
-    console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${request} ${this._serverLogin(dir)}`);
-    const fetchOptions = 'GET' ? {method: request} : {method: request
+    const localToken = localStorage.getItem('token');
+    console.log(`Api got token 4 auth: ${localToken} 4 ${request} ${this._serverLogin(dir)}`);
+    const fetchOptions = localToken ? {method: request} : {method: request
       , headers: {'Content-Type': 'application/json'
-      , Authorization: `Bearer ${localStorage.getItem('token')}`
+      , Authorization: `Bearer ${localToken}`
     }};
     return fetch(this._serverLogin(dir),fetchOptions).then((res, msg = `${dir} autorize ${request} `) => 
       handler(res, msg)
     );
-    
+
    /* return fetch(this._serverLogin(dir), {method: request
       , headers: {'Content-Type': 'application/json'
       , Authorization: 'GET' ? localStorage.getItem('token') : `Bearer ${localStorage.getItem('token')}`
