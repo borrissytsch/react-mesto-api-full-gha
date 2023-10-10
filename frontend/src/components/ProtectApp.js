@@ -91,10 +91,11 @@ export default function ProtectApp({startApp}) {
     evt.preventDefault();
     setCardCaption(msgSubmitButtonWait);
     mestApi.addCard(card).then(result => {
-      alert(`New card added: ${result}`);
-      console.log(`New card added: ${result}`);
+      alert(`New card added: ${Object.entries(result).join('; ')}`);
+      console.log(`New card added: ${Object.entries(result).join('; ')}`);
       setCards([result, ...cards]);
       closeAllPopups(evt, true);
+      window.location.reload();
     }).catch(err => console.log(errMsg4AddCardForm(err))
     ).finally(() => setCardCaption(captionCardButton));
   }
