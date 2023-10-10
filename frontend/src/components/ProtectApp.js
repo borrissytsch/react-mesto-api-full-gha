@@ -93,8 +93,8 @@ export default function ProtectApp({startApp}) {
     evt.preventDefault();
     setCardCaption(msgSubmitButtonWait);
     mestApi.addCard(card).then(result => {
-      alert(`New card added: ${result.map(rescard => Object.entries(rescard).join('; '))}`);
-      console.log(`New card added: ${result.map(rescard => Object.entries(rescard).join('; '))}`);
+      alert(`New card added: ${Object.entries(result).join('; ')}`);
+      console.log(`New card added: ${Object.entries(result).join('; ')}`);
       setCards([result, ...cards]);
       closeAllPopups(evt, true);
       window.location.reload();
@@ -117,7 +117,7 @@ export default function ProtectApp({startApp}) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     mestApi.changeLikeStatus(card._id, isLiked).then(result => {
       // logs added 10/10/23 seek map err
-      alert(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
+      // alert(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
       console.log(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
       setCards(cards => cards.map(item => item._id === card._id ? result : item));
       window.location.reload(); // added 10/10/23 to seek hung redraw
