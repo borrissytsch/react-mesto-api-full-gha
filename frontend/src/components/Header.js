@@ -6,6 +6,14 @@ import logo from './../images/header/logo.svg';
 
 function Header({routeLink, signCaption, startApp, ...headerFields}) {
   const loggedIn = useContext(LoggedInContext);
+
+  function handleLinkClick (evt) {
+    if (loggedIn) {
+      localStorage.removeItem('token');
+      startApp(false);
+    }
+  }
+  
   return (
     <header  className="header">
       <img src={logo} className="header__logo" alt="Лого Место" />
@@ -15,13 +23,6 @@ function Header({routeLink, signCaption, startApp, ...headerFields}) {
       </div>
     </header>
   );
-
-  function handleLinkClick (evt) {
-    if (loggedIn) {
-      localStorage.removeItem('token');
-      startApp(false);
-    }
-  }
 }
 
 export default Header;

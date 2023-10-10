@@ -3,9 +3,18 @@ import {mestApi} from '../utils/Api.js'
 import Card from './Card.js'
 import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
 import { errMsg4GetCardsInfo } from '../utils/constants.js'
+
 function Main({clickHandlers, formName, onClose, cards, onCardLike, onCardDelete}) {
   const {name, about, avatar, _id, cohort} = React.useContext(CurrentUserContext);
   const userName = name; const userDescription = about; const userAvatar = avatar;
+
+  function createCardItems (cards) { 
+    return cards.map((card, i) => (
+      <Card key={`card_${card._id}`} card={card} onCardClick={clickHandlers.onCardClick}
+        onCardLike={onCardLike} onCardDelete={onCardDelete}
+      />
+    ));
+  }
 
   return (
     <main className="content">
@@ -26,14 +35,6 @@ function Main({clickHandlers, formName, onClose, cards, onCardLike, onCardDelete
       </section>
     </main>
   );
-  
-  function createCardItems (cards) { 
-    return cards.map((card, i) => (
-      <Card key={`card_${card._id}`} card={card} onCardClick={clickHandlers.onCardClick}
-        onCardLike={onCardLike} onCardDelete={onCardDelete}
-      />
-    ));
-  }
 }
 
 export default Main;

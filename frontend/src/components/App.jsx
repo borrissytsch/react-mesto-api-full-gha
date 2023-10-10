@@ -29,6 +29,28 @@ export default function App() {
     if (isToolTipOpen) document.addEventListener('keydown', closeToolTip);
   }, [isToolTipOpen]);
 
+  function startApp(checkTokenRes) {
+    if (checkTokenRes) {
+    setLoggedIn(true);
+    setLoggedMail(checkTokenRes.data.email);
+   } else {
+    setLoggedIn(false); setLoggedMail('');
+   }
+  }
+
+  function handleToolTipOpen(isOk = false, isOpen = true) {
+    setToolTipOk(isOk);
+    setToolTipOpen(isOpen);
+   }
+
+  function closeToolTip(evt, forceClose_flag = false) {
+    evt.preventDefault();
+    if ((evt.target === evt.currentTarget) || evt.key === "Escape" || forceClose_flag) {
+      document.removeEventListener('keydown', closeToolTip);
+      setToolTipOpen(false);
+    }
+  }
+
   return (
     <>
       <Routes>
@@ -51,26 +73,4 @@ export default function App() {
       />
     </>
   );
-
-  function startApp(checkTokenRes) {
-    if (checkTokenRes) {
-    setLoggedIn(true);
-    setLoggedMail(checkTokenRes.data.email);
-   } else {
-    setLoggedIn(false); setLoggedMail('');
-   }
-  }
-
-  function handleToolTipOpen(isOk = false, isOpen = true) {
-    setToolTipOk(isOk);
-    setToolTipOpen(isOpen);
-   }
-
-  function closeToolTip(evt, forceClose_flag = false) {
-    evt.preventDefault();
-    if ((evt.target === evt.currentTarget) || evt.key === "Escape" || forceClose_flag) {
-      document.removeEventListener('keydown', closeToolTip);
-      setToolTipOpen(false);
-    }
-  }
 }

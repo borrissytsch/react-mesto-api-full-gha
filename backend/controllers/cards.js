@@ -3,13 +3,13 @@ const NotFound = require('../errors/NotFound');
 const Forbidden = require('../errors/Forbidden');
 
 const {
-  resOkDefault, errIncorrectData, errDefault, errValidationErr,
+  resOkDefault, resOKCreated, errIncorrectData, errDefault, errValidationErr,
 } = require('../utils/constants');
 const { logPassLint } = require('../utils/miscutils');
 
 function getCards(req, res) {
   Card.find({}).then((cardList) => {
-    res.send({ data: cardList });
+    res.status(resOkDefault).send({ data: cardList });
   }).catch((err) => {
     logPassLint(err, true);
     res.status(errDefault.num).send({ message: errDefault.msg });
@@ -26,7 +26,7 @@ function createCard(req, res) {
       name, link, owner, likes,
     },
   ).then((card) => {
-    res.send({
+    res.status(resOKCreated).send({
       data: {
         name: card.name, link: card.link, owner: card.owner, likes: card.likes, _id: card._id,
       },
@@ -73,7 +73,7 @@ function updateCardById(id, updateData, updateOptions = { new: true }) {
 function likeCard(req, res, next) {
   // console.log(`Card 2 like ${req.params.cardId} 4 user: ${req.user._id}`);
   updateCardById(req.params.cardId, { $addToSet: { likes: req.user._id } }).then((card) => {
-    res.send({ data: card });
+    res.status(resOkDefault).send({ data: card });
   }).catch((err) => {
     next(err);
   });
@@ -82,7 +82,7 @@ function likeCard(req, res, next) {
 function dislikeCard(req, res, next) {
   // console.log(`Card 2 dislike ${req.params.cardId} 4 user: ${req.user._id}`);
   updateCardById(req.params.cardId, { $pull: { likes: req.user._id } }).then((card) => {
-    res.send({ data: card });
+    res.status(resOkDefault).send({ data: card });
   }).catch((err) => next(err));
 }
 

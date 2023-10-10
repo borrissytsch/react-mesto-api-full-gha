@@ -10,6 +10,15 @@ export function Register ({handleToolTipOpen}) {
   const {regTitle, btnEnterCaption: regEnterCaption, btnRegCaption} = signPageCaptions;
   const {signin} = authRoutes; const {signup: formId} = authFormIds;
 
+  function handleRegForm (evt, {email, password}) {
+    evt.preventDefault();
+    mestAuth.authorize({email, password}, srvAuthData.signup).then(result => {
+      // alert(`Reg res ${result}: ${result.data} is: ${result.data._id} ${result.data.email} `)
+      handleToolTipOpen(true);
+    }).catch(err => {handleToolTipOpen(false); console.log(`Register: ${err}`)
+    });
+  }
+  
   return (
     <>
       <Header routeLink={`/${signin}`} signCaption={regEnterCaption} />
@@ -18,12 +27,4 @@ export function Register ({handleToolTipOpen}) {
       </RegForm>
     </>
   );
-
-  function handleRegForm (evt, {email, password}) {
-    evt.preventDefault();
-    mestAuth.authorize({email, password}, srvAuthData.signup).then(result => {
-      // alert(`Reg res ${result}: ${result.data} is: ${result.data._id} ${result.data.email} `)
-      handleToolTipOpen(true);
-    }).catch(err => {handleToolTipOpen(false); console.log(`Register: ${err}`)
-  }); }
 }

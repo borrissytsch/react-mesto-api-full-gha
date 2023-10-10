@@ -6,7 +6,7 @@ const NotFound = require('../errors/NotFound');
 const ValidationErr = require('../errors/ValidationError');
 const ServerError = require('../errors/ServerError');
 const {
-  errIncorrectData, errNotFound, errDefault, errValidationErr,
+  resOkDefault, resOKCreated, errIncorrectData, errNotFound, errDefault, errValidationErr,
   errAuth, errIllegalArgsPattern, pswSoltLen, TOKEN_KEY, // NODE_ENV,
   tokenDuration,
 } = require('../utils/constants');
@@ -14,7 +14,7 @@ const { logPassLint, handleIdErr } = require('../utils/miscutils');
 
 function getUsers(req, res) {
   User.find({}).then((userList) => {
-    res.send({ data: userList });
+    res.status(resOkDefault).send({ data: userList });
   }).catch((err) => {
     logPassLint(err, true);
     res.status(errDefault.num).send({ message: err });
@@ -32,7 +32,7 @@ function getUserById(req, res) {
       name, about, avatar, email, _id,
     };
     // console.log(`User 2 send 4 response: ${Object.entries(user).join('; ')}`);
-    return res.send({ data: user });
+    return res.status(resOkDefault).send({ data: user });
   }).catch((err) => {
     handleIdErr(res, err);
   });
@@ -51,7 +51,7 @@ function getUserIInfo(req, res) {
     const user = {
       name, about, avatar, email,
     };
-    return res.send({ data: user });
+    return res.status(resOkDefault).send({ data: user });
   }).catch((err) => {
     // console.log(`Get user info: ${err}`);
     handleIdErr(res, err);
@@ -66,7 +66,7 @@ function createUser(req, res, next) {
   bcrypt.hash(req.body.password, pswSoltLen).then((password) => User.create({
     name, about, avatar, email, password,
   })).then((user) => {
-    res.send({
+    res.status(resOKCreated).send({
       data: {
         name: user.name, about: user.about, avatar: user.avatar, email: user.email,
       },
@@ -103,7 +103,7 @@ function updateProfile(req, res, next) {
   try {
     if (!name || !about) throw new ValidationErr();
     updateUserById(_id, { name, about }).then((user) => {
-      res.send({ data: user });
+      res.status(resOkDefault).send({ data: user });
     }).catch((err) => {
       if (err.name === errValidationErr) next(new ValidationErr());
       if (err instanceof Error) {
@@ -123,7 +123,7 @@ function updateAvatar(req, res, next) {
   try {
     if (!avatar) throw new ValidationErr();
     updateUserById(_id, { avatar }).then((user) => {
-      res.send({ data: user });
+      res.status(resOkDefault).send({ data: user });
     }).catch((err) => {
       if (err.name === errValidationErr) next(new ValidationErr());
       if (err instanceof Error) {
@@ -144,7 +144,8 @@ function login(req, res) {
     console.log(`Credentials user: ${user}`); // Здeсь терн опер для dev/prod tokens
     const token = jwt.sign({ _id: user._id }, TOKEN_KEY, { expiresIn: tokenDuration });
     console.log(`User credentials token: ${token}`);
-    res.send({ token }); // сделать запись JWT в httpOnly куку: если не пройдёт - откатить
+    res.status(resOkDefault).send({ token });
+    // сделать запись JWT в httpOnly куку: если не пройдёт - откатить
     /* res.cookie('jwt', token, {
       // maxAge: tokenDuration, // make function 4 token in sec & so on 2 ms (ms m h d)
       maxAge: 3600000 * 24 * 7, // add a piece 4 token transfer duration

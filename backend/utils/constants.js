@@ -74,6 +74,7 @@ const lnkAvatarPattern = /^(https?:\/\/)?(w{3}[0-9]?\.)?[0-9a-z_]+[0-9a-z._-]*\.
 
 /* Error processing config consts */
 const resOkDefault = 200;
+const resOKCreated = 201;
 const errIncorrectData = {
   num: 400,
   name: 'Incorrect data',
@@ -148,6 +149,7 @@ module.exports = {
   idPattern,
   lnkAvatarPattern,
   resOkDefault,
+  resOKCreated,
   errIncorrectData,
   errAuth,
   errForbidden,

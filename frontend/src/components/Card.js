@@ -3,11 +3,16 @@ import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
 import {cardSettings} from '../utils/constants.js';
 export default function Card({card, onCardClick, onCardLike, onCardDelete}) {
   const {name, about, avatar, _id, cohort} = React.useContext(CurrentUserContext);
-  const {trashActiveClass: trashActive
+  const { trashActiveClass: trashActive
     , likeIconClass: likeIcon, likenActiveClass: likenActive
   } = cardSettings;
   const isOwn = card.owner._id === _id;
   const isLiked = card.likes.some(i => i._id === _id);
+
+  function handleClick(evt) {
+    onCardClick(evt, undefined, card);
+  }
+
   return (
     <li className="table__cell" onClick={handleClick}>
       <button type="button" className={`table__trash ${isOwn ? trashActive : ""}`}
@@ -23,8 +28,4 @@ export default function Card({card, onCardClick, onCardLike, onCardDelete}) {
       </div>
     </li>
   );
-
-  function handleClick(evt) {
-    onCardClick(evt, undefined, card);
-  }
 }
