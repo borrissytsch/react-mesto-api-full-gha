@@ -11,7 +11,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const {
-  PORT, USERS, NODE_ENV, CRASH_TEST, CARDS, DEFAULT_ALLOWED_METHODS, /* allowedCors, */ errNotFound,
+  PORT, USERS, NODE_ENV, CRASH_TEST, CARDS, DEFAULT_ALLOWED_METHODS, allowedCors, errNotFound,
   crashTestRoute,
 } = require('./utils/constants');
 const { logger, logPassLint } = require('./utils/miscutils');
@@ -37,12 +37,12 @@ app.use((req, res, next) => {
 
   console.log(`${curDate.toISOString()} Origin: ${origin} / method: ${method} / req headers: ${requestHeaders}`);
   res.header('Access-Control-Allow-Origin', '*'); // allow all requests, del after debug end
-  /* if (allowedCors.includes(origin)) { // проверяем, что источник запроса есть среди разрешённых
-    console.log(`${curDate.toISOString()} Request ${orign} is allowed:
+  if (allowedCors.includes(origin)) { // проверяем, что источник запроса есть среди разрешённых
+    console.log(`${curDate.toISOString()} Request ${origin} is allowed:
     ${allowedCors.includes(origin)}`);
     res.header('Access-Control-Allow-Origin', origin);
     // устанавливаем заголовок, разрешающий запросы с этого источника
-  } */
+  }
   if (method === 'OPTIONS') { // Для предварительного запроса, добавляем нужные заголовки
     console.log(`${curDate.toISOString()} Methods 4 preflights: ${requestHeaders}`);
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS); // разрешаем кросс-доменные запросы любых типов (по умолчанию)
