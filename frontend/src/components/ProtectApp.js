@@ -41,7 +41,7 @@ export default function ProtectApp({startApp}) {
   useEffect(() => {
     Promise.all([mestApi.autorize(), mestApi.getInitialCards()]).then(result => {
       alert(`Api auth passed: ${Object.entries(result[0].data).join('; ')} // cards are: ${result[1].data.map(rescard => Object.entries(rescard).join('; '))}`);
-      console.log(`Api auth passed: ${result[0].data} // cards are: ${result[1].data}`);
+      console.log(`Api auth passed: ${Object.entries(result[0].data).join('; ')} // cards are: ${result[1].data.map(rescard => Object.entries(rescard).join('; '))}`);
       // setCurrentUser(result[0]); // commented @ 10/10/23 seek map err , id: result[0]._id, cohort: result[0].cohort
       setCurrentUser(result[0].data); // added @ 10/10/23 back rets data: {}
       // setCards(result[1]);
@@ -58,6 +58,7 @@ export default function ProtectApp({startApp}) {
     setProfileCaption(msgSubmitButtonWait);
     mestApi.updateAvatar(refAvatar).then(result => {
       const newUser = currentUser; newUser.avatar = result.avatar;
+      console.log(`Update avatar: ${Object.entries(result).join('; ')}`)
       setCurrentUser(newUser);
       closeAllPopups(evt, true);
       window.location.reload();
