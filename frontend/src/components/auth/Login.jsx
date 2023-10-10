@@ -17,8 +17,9 @@ export function Login ({loggedIn, startApp, handleToolTipOpen}) {
     evt.preventDefault();
     mestAuth.authorize({email, password}, srvAuthData.signin).then(result => {
       if (result.token) {
-            localStorage.setItem('token', result.token);
-        return result.token;
+        localStorage.setItem('token', result.token);
+        console.log(`Login token is: ${result.token}`)
+        // return result.token; // commented @ 10/10/23 (why return if then will be done further)
       } else {
         console.log(`Token has not been received from server, result keys are: ${Object.keys(result).join('/')}`); // alert(`token has not been received from server, result keys are: ${Object.keys(result).join('/')}`)
       }
