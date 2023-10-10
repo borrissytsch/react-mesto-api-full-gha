@@ -40,7 +40,7 @@ export default function ProtectApp({startApp}) {
 
   useEffect(() => {
     Promise.all([mestApi.autorize(), mestApi.getInitialCards()]).then(result => {
-      alert(`Api auth passed: ${result[0]} // cards are: ${result[1]}`);
+      alert(`Api auth passed: ${Object.entries(result[0]).join('; ')} // cards are: ${Object.entries(result[1]).join('; ')}`);
       console.log(`Api auth passed: ${result[0]} // cards are: ${result[1]}`);
       setCurrentUser(result[0]); // , id: result[0]._id, cohort: result[0].cohort
       setCards(result[1]);
@@ -111,14 +111,10 @@ export default function ProtectApp({startApp}) {
     evt.preventDefault(); evt.stopPropagation();
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     mestApi.changeLikeStatus(card._id, isLiked).then(result => {
-      // if & logs added 10/10/23 seek map err
+      // logs added 10/10/23 seek map err
       alert(`ProtectApp card likes result: ${result}`);
       console.log(`ProtectApp card likes result: ${result}`);
-      if (result) {
       setCards(cards => cards.map(item => item._id === card._id ? result : item));
-      } else {
-        console.log(`ProtectApp card likes result is empty ${result}`);
-    }
     }).catch(err => console.log(errMsg4CardLikeAdd(err)))
   }
 
