@@ -40,17 +40,13 @@ export default function ProtectApp({startApp}) {
 
   useEffect(() => {
     Promise.all([mestApi.autorize(), mestApi.getInitialCards()]).then(result => {
-      // console.log(`Api auth passed: ${Object.entries(result[0].data).join('; ')} & ${result[0].data._id} & ${result[0].data.id} // cards are: ${result[1].data.map(rescard => Object.entries(rescard).join('; '))}`);
-      // alert(`Api auth passed: ${Object.entries(result[0].data).join('; ')} & ${result[0].data._id} & ${result[0].data.id} // cards are: ${result[1].data.map(rescard => Object.entries(rescard).join('; '))}`);
-      // setCurrentUser(result[0]); // commented @ 10/10/23 seek map err , id: result[0]._id, cohort: result[0].cohort
-      setCurrentUser(result[0].data); // added @ 10/10/23 back rets data: {}
-      // setCards(result[1]);
-      setCards(result[1].data); // added @ 10/10/23 back rets data: {}
+      setCurrentUser(result[0].data);
+      setCards(result[1].data);
     }).catch(err => {console.log(errMsg4GetCardsInfo(err));
-      alert(`Frontauth err: ${err}`);
+      // alert(`Frontauth err: ${err} / ${err.name}`);
+      // window.location.reload();
     });
-  // }, []);
-  }, [cards]); // added @ 10/10/23 2 redraw on card add
+    }, [cards]);
 
   function handleEditAvatarClick(evt, setOpen_flag = true) {
     setAvatarOpen(setOpen_flag);
@@ -80,7 +76,8 @@ export default function ProtectApp({startApp}) {
       setCurrentUser(newUser);
       closeAllPopups(evt, true);
     }).catch(err => {console.log(errMsg4ProfileForm(err));
-      alert(`User profile update err: ${err}`)
+      // alert(`User profile update err: ${err} / ${err.name}`)
+      // window.location.reload();
     }).finally(() => setProfileCaption(captionProfileButton));
   }
 
@@ -96,8 +93,6 @@ export default function ProtectApp({startApp}) {
     evt.preventDefault();
     setCardCaption(msgSubmitButtonWait);
     mestApi.addCard(card).then(result => {
-      // console.log(`New card added: ${Object.entries(result).join('; ')}`);
-      // alert(`New card added: ${Object.entries(result).join('; ')}`);
       setCards([result, ...cards]);
       closeAllPopups(evt, true);
     }).catch(err => console.log(errMsg4AddCardForm(err))
@@ -116,12 +111,9 @@ export default function ProtectApp({startApp}) {
   
   function handleCardLike(evt, card) {
     evt.preventDefault(); evt.stopPropagation();
-    // const isLiked = card.likes.some(i => i._id === currentUser._id);
-    const isLiked = card.likes.some(i => i === currentUser._id); // likes search @ 10/10/23
+    // const isLiked = card.likes.some(i => i._id === currentUser._id); // likes search @ 10/10/23
+    const isLiked = card.likes.some(i => i === currentUser._id);
     mestApi.changeLikeStatus(card._id, isLiked).then(result => {
-      // logs added 10/10/23 seek map err
-      // alert(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
-      // console.log(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
       setCards(cards => cards.map(item => item._id === card._id ? result : item));
     }).catch(err => console.log(errMsg4CardLikeAdd(err)))
   }

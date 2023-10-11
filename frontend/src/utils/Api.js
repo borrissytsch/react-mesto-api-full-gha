@@ -32,7 +32,6 @@ constructor (loginData) {
   updateProfile(userData, dir = this._userDir, handler = this._retPromiseResponse, request = 'PATCH') {
     // console.log(`Api got token 4 auth: ${localStorage.getItem('token')} 4 ${request} ${this._serverLogin(dir)}`);
     return fetch(this._serverLogin(dir), {method: request
-    //, headers: {authorization: localStorage.getItem('token')
       , headers: {authorization: `Bearer ${localStorage.getItem('token')}`
       , 'Content-Type': 'application/json'
       }

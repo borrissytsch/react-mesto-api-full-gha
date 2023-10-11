@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import { NavLink } from 'react-router-dom';
 import {LoggedInContext} from '../contexts/LoggedInContext.js';
 import logo from './../images/header/logo.svg';
-// import './App.css';
 
 function Header({routeLink, signCaption, startApp, ...headerFields}) {
   const loggedIn = useContext(LoggedInContext);

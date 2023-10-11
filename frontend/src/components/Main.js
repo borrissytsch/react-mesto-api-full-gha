@@ -1,16 +1,13 @@
-import React/*, { useState, useEffect }*/ from 'react';
-// import {mestApi} from '../utils/Api.js'
+import React from 'react';
 import Card from './Card.js'
 import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
-// import { errMsg4GetCardsInfo } from '../utils/constants.js';
 
 function Main({clickHandlers, formName, onClose, cards, onCardLike, onCardDelete}) {
   const {name, about, avatar, _id/*, cohort*/} = React.useContext(CurrentUserContext);
   const userName = name; const userDescription = about; const userAvatar = avatar;
 
   function createCardItems (cards) {
-    // alert(`Main cards: ${cards.map(card => Object.entries(card).join('; '))}`);
-    // console.log(`Main cards: ${cards.map(card => Object.entries(card).join('; '))}`);
+      // console.log(`Main cards: ${cards.map(card => Object.entries(card).join('; '))}`);
     return cards.map((card, i) => (
       <Card key={`card_${card._id}`} card={card} onCardClick={clickHandlers.onCardClick}
         onCardLike={onCardLike} onCardDelete={onCardDelete}
