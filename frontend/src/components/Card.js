@@ -10,7 +10,7 @@ export default function Card({card, onCardClick, onCardLike, onCardDelete}) {
   const isOwn = card.owner === _id; // Trash search @ 10/10/23
   alert(`Cards like: _id ${_id} // likes: ${card.likes}`);
   // const isLiked = card.likes.some(i => i._id === _id);
-  const isLiked = card.likes.some(i => i === _id); // likes search @ 10/10/23
+  const isLiked = card.likes ? card.likes.some(i => i === _id) : false; // likes search @ 10/10/23
   // console.log(`Cards trash: isOwn/Liked-${isOwn}/${isLiked} 4 card ${Object.entries(card)} _id ${_id} of ${name}/${about} // owner: ${card.owner} & likes ${card.likes}`);
   function handleClick(evt) {
     onCardClick(evt, undefined, card);
