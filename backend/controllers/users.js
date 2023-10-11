@@ -144,7 +144,7 @@ function login(req, res) {
   return User.findUserByCredentials(email, password).then((user) => { // в token надо user._id
     console.log(`Credentials user: ${user}`); // Здeсь терн опер для dev/prod tokens
     const token = jwt.sign({ _id: user._id }, TOKEN_KEY, { expiresIn: tokenDuration });
-    console.log(`User credentials token: ${token}`);
+    // console.log(`User credentials token: ${token}`);
     res.status(resOkDefault).send({ token });
     // сделать запись JWT в httpOnly куку: если не пройдёт - откатить
     /* res.cookie('jwt', token, {
