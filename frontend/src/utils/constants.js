@@ -40,8 +40,8 @@ export const signPageCaptions = {inTitle: "Вход", regTitle: "Регистр�
 };
 
 /* Servers' data config */
-export const srvAuthData = {auth: (dir) =>`https://borrissytsch-practicum.nomoredomainsrocks.ru/${dir}`, signin: 'signin',  signup: 'signup'
-  , userDir: 'users/me'
+export const srvAuthData = {auth: (dir) =>`https://borrissytsch-practicum.nomoredomainsrocks.ru/${dir}`
+  , signin: 'signin',  signup: 'signup', userDir: 'users/me'
 };
 export const srvLoginData = {login: (dir) =>`https://borrissytsch-practicum.nomoredomainsrocks.ru/${dir}`, token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTIwMzJhZDBmYjBjZTZlZDkxNTc0YTMiLCJpYXQiOjE2OTY2MDkwMDAsImV4cCI6MTY5NzIxMzgwMH0.wmGm6aPq81Q_zBAL0-SGPr7I_NSYeJ_0GAfr7DRDDgA'
   , userDir: 'users/me'

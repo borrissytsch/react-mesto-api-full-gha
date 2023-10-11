@@ -21,6 +21,8 @@ constructor (loginData) {
   }
 
   _retPromiseResponse(res, errMsg = '', theOnlyMsg_flag = false) {
+    console.log(`Api _id search: ${res}`);
+    alert(`Api _id search: ${res}`);
     if (res.ok) return res.json();
     return Promise.reject(theOnlyMsg_flag ? errMsg : `Api ${errMsg}promise error: ${res.status}`);
   }
