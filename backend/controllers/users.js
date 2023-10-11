@@ -51,6 +51,7 @@ function getUserIInfo(req, res) {
     const user = {
       name, about, avatar, email, _id: mongUser.userId, // _id added 2 seek _id in front @ 10/10/23
     };
+    console.log(`Get mongUsInfo: ${mongUser.userId} / ${Object.entries(user).join('; ')}`);
     return res.status(resOkDefault).send({ data: user });
   }).catch((err) => {
     // console.log(`Get user info: ${err}`);
