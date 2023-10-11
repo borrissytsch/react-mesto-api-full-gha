@@ -46,10 +46,10 @@ function getUserIInfo(req, res) {
   User.findById(userId).then((mongUser) => {
     if (!mongUser) return Promise.reject(new Error(errNotFound.msg));
     const {
-      name, about, avatar, email,
+      name, about, avatar, email, _id, // _id added 2 seek _id in front @ 10/10/23
     } = mongUser;
     const user = {
-      name, about, avatar, email,
+      name, about, avatar, email, _id, // _id added 2 seek _id in front @ 10/10/23
     };
     return res.status(resOkDefault).send({ data: user });
   }).catch((err) => {
