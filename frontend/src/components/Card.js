@@ -6,7 +6,8 @@ export default function Card({card, onCardClick, onCardLike, onCardDelete}) {
   const { trashActiveClass: trashActive
     , likeIconClass: likeIcon, likenActiveClass: likenActive
   } = cardSettings;
-  const isOwn = card.owner._id === _id;
+  // const isOwn = card.owner._id === _id;
+  const isOwn = card.owner === _id; // Trash search @ 10/10/23
   const isLiked = card.likes.some(i => i._id === _id);
   console.log(`Cards trash: isOwn/Liked-${isOwn}/${isLiked} 4 card ${Object.entries(card)} _id ${_id} of ${name}/${about} // owner: ${card.owner._id}`);
   alert(`Cards trash: isOwn/Liked-${isOwn}/${isLiked} 4 card ${Object.entries(card)} _id ${_id} of ${name}/${about} // owner: ${card.owner._id}`);
