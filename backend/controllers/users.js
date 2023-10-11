@@ -49,9 +49,10 @@ function getUserIInfo(req, res) {
       name, about, avatar, email, // _id added 2 seek _id in front @ 10/10/23
     } = mongUser;
     const user = {
-      name, about, avatar, email, _id: mongUser.userId, // _id added 2 seek _id in front @ 10/10/23
+      name, about, avatar, email, _id: mongUser._id, // _id added 2 seek _id in front @ 10/10/23
     };
-    console.log(`Get mongUsInfo: ${mongUser.userId} / ${Object.entries(user).join('; ')}`);
+    console.log(`Get mongUser: ${mongUser._id} / ${Object.entries(mongUser).join('; ')}`);
+    console.log(`Get mongUsInfo: ${mongUser._id} / ${Object.entries(user).join('; ')}`);
     return res.status(resOkDefault).send({ data: user });
   }).catch((err) => {
     // console.log(`Get user info: ${err}`);
@@ -142,7 +143,7 @@ function login(req, res) {
   const { email, password } = req.body;
 
   return User.findUserByCredentials(email, password).then((user) => { // в token надо user._id
-    console.log(`Credentials user: ${user}`); // Здeсь терн опер для dev/prod tokens
+    // console.log(`Credentials user: ${user}`); // Здeсь терн опер для dev/prod tokens
     const token = jwt.sign({ _id: user._id }, TOKEN_KEY, { expiresIn: tokenDuration });
     // console.log(`User credentials token: ${token}`);
     res.status(resOkDefault).send({ token });
@@ -152,8 +153,8 @@ function login(req, res) {
       maxAge: 3600000 * 24 * 7, // add a piece 4 token transfer duration
       httpOnly: true,
     }).end(); */
-  }).catch((err) => {
-    console.log(`User credentials login error ${err.name}: ${err}`);
+  }).catch((/* err */) => {
+    // console.log(`User credentials login error ${err.name}: ${err}`);
     res.status(errAuth.num).send({ message: errAuth.msg });
   });
 }
