@@ -40,7 +40,7 @@ export default function ProtectApp({startApp}) {
 
   useEffect(() => {
     Promise.all([mestApi.autorize(), mestApi.getInitialCards()]).then(result => {
-      console.log(`Api auth passed: ${Object.entries(result[0].data).join('; ')} & ${result[0].data._id} & ${result[0].data.id} // cards are: ${result[1].data.map(rescard => Object.entries(rescard).join('; '))}`);
+      // console.log(`Api auth passed: ${Object.entries(result[0].data).join('; ')} & ${result[0].data._id} & ${result[0].data.id} // cards are: ${result[1].data.map(rescard => Object.entries(rescard).join('; '))}`);
       // alert(`Api auth passed: ${Object.entries(result[0].data).join('; ')} & ${result[0].data._id} & ${result[0].data.id} // cards are: ${result[1].data.map(rescard => Object.entries(rescard).join('; '))}`);
       // setCurrentUser(result[0]); // commented @ 10/10/23 seek map err , id: result[0]._id, cohort: result[0].cohort
       setCurrentUser(result[0].data); // added @ 10/10/23 back rets data: {}
@@ -98,7 +98,7 @@ export default function ProtectApp({startApp}) {
       console.log(`New card added: ${Object.entries(result).join('; ')}`);
       setCards([result, ...cards]);
       closeAllPopups(evt, true);
-      window.location.reload();
+      // window.location.reload();
     }).catch(err => console.log(errMsg4AddCardForm(err))
     ).finally(() => setCardCaption(captionCardButton));
   }
@@ -120,7 +120,7 @@ export default function ProtectApp({startApp}) {
     mestApi.changeLikeStatus(card._id, isLiked).then(result => {
       // logs added 10/10/23 seek map err
       // alert(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
-      console.log(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
+      // console.log(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
       setCards(cards => cards.map(item => item._id === card._id ? result : item));
       window.location.reload(); // added 10/10/23 to seek hung redraw
     }).catch(err => console.log(errMsg4CardLikeAdd(err)))
