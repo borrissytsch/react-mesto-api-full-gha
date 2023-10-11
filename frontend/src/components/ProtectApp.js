@@ -95,7 +95,7 @@ export default function ProtectApp({startApp}) {
     evt.preventDefault();
     setCardCaption(msgSubmitButtonWait);
     mestApi.addCard(card).then(result => {
-      // alert(`New card added: ${Object.entries(result).join('; ')}`);
+      alert(`New card added: ${Object.entries(result).join('; ')}`);
       console.log(`New card added: ${Object.entries(result).join('; ')}`);
       setCards([result, ...cards]);
       closeAllPopups(evt, true);
@@ -123,7 +123,7 @@ export default function ProtectApp({startApp}) {
       // alert(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
       // console.log(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
       setCards(cards => cards.map(item => item._id === card._id ? result : item));
-      window.location.reload(); // added 10/10/23 to seek hung redraw
+      // window.location.reload(); // added 10/10/23 to seek hung redraw
     }).catch(err => console.log(errMsg4CardLikeAdd(err)))
   }
 
