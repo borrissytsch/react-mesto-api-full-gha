@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Header from '../Header';
 import RegForm from './RegForm';
 import { mestAuth } from '../../utils/Auth';
-import {signPageCaptions, authRoutes, authFormIds, userAuthData, srvAuthData} from '../../utils/constants';
+import {signPageCaptions, authRoutes, authFormIds, /*userAuthData, */srvAuthData} from '../../utils/constants';
 
 export function Register ({handleToolTipOpen}) {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ export function Register ({handleToolTipOpen}) {
     evt.preventDefault();
     mestAuth.authorize({email, password}, srvAuthData.signup).then(result => {
       handleToolTipOpen(true);
+      navigate(`/${srvAuthData.signin}`);
     }).catch(err => {handleToolTipOpen(false); console.log(`Register: ${err}`)
     });
   }
