@@ -22,7 +22,7 @@ export default class Auth {
   
   _retPromiseResponse (res, errMsg = '', theOnlyMsg_flag = false) {
     // return Promise.resolve('Test resolve 2 open success reg form')
-    if (res.status === 200) return res.json();
+    if (res.status === 200 || res.status === 201) return res.json();
     return Promise.reject(res.ok ?  (theOnlyMsg_flag  
         ? res.toString() : `${errMsg}promise rejected, status ${res.status}`
       ) : (
