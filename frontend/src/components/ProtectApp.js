@@ -115,7 +115,8 @@ export default function ProtectApp({startApp}) {
   
   function handleCardLike(evt, card) {
     evt.preventDefault(); evt.stopPropagation();
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    // const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id); // likes search @ 10/10/23
     mestApi.changeLikeStatus(card._id, isLiked).then(result => {
       // logs added 10/10/23 seek map err
       // alert(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
