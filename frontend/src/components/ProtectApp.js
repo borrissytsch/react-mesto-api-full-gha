@@ -48,7 +48,7 @@ export default function ProtectApp({startApp}) {
       setCards(result[1].data); // added @ 10/10/23 back rets data: {}
     }).catch(err => console.log(errMsg4GetCardsInfo(err)));
   // }, []);
-  }, [cards]); // added @ 10/10/23 2 redraw on card add
+  }, []); // added @ 10/10/23 2 redraw on card add
 
   function handleEditAvatarClick(evt, setOpen_flag = true) {
     setAvatarOpen(setOpen_flag);
@@ -123,7 +123,6 @@ export default function ProtectApp({startApp}) {
       // alert(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
       // console.log(`ProtectApp card likes result: ${Object.entries(result).join('; ')}`);
       setCards(cards => cards.map(item => item._id === card._id ? result : item));
-      // window.location.reload(); // added 10/10/23 to seek hung redraw
     }).catch(err => console.log(errMsg4CardLikeAdd(err)))
   }
 
