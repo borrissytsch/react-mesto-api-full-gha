@@ -47,7 +47,8 @@ export default function ProtectApp({startApp}) {
       // setCards(result[1]);
       setCards(result[1].data); // added @ 10/10/23 back rets data: {}
     }).catch(err => console.log(errMsg4GetCardsInfo(err)));
-  }, []);
+  // }, []);
+  }, [cards]); // added @ 10/10/23 2 redraw on card add
 
   function handleEditAvatarClick(evt, setOpen_flag = true) {
     setAvatarOpen(setOpen_flag);
