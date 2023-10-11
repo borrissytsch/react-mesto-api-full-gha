@@ -48,7 +48,7 @@ export default function ProtectApp({startApp}) {
       setCards(result[1].data); // added @ 10/10/23 back rets data: {}
     }).catch(err => console.log(errMsg4GetCardsInfo(err)));
   // }, []);
-  }, [cards]); // added @ 10/10/23 2 redraw on card add
+  }, [cards, currentUser]); // added @ 10/10/23 2 redraw on card add
 
   function handleEditAvatarClick(evt, setOpen_flag = true) {
     setAvatarOpen(setOpen_flag);
@@ -62,7 +62,6 @@ export default function ProtectApp({startApp}) {
       console.log(`Update avatar: ${Object.entries(result).join('; ')}`)
       setCurrentUser(newUser);
       closeAllPopups(evt, true);
-      // window.location.reload();
     }).catch(err => console.log(errMsg4AvatarForm(err))
     ).finally(() => setProfileCaption(captionProfileButton));
   }
@@ -78,7 +77,6 @@ export default function ProtectApp({startApp}) {
       const newUser = currentUser; newUser.name = result.name; newUser.about = result.about;
       setCurrentUser(newUser);
       closeAllPopups(evt, true);
-      // window.location.reload();
     }).catch(err => console.log(errMsg4ProfileForm(err))
     ).finally(() => setProfileCaption(captionProfileButton));
   }
@@ -95,8 +93,8 @@ export default function ProtectApp({startApp}) {
     evt.preventDefault();
     setCardCaption(msgSubmitButtonWait);
     mestApi.addCard(card).then(result => {
-      alert(`New card added: ${Object.entries(result).join('; ')}`);
-      console.log(`New card added: ${Object.entries(result).join('; ')}`);
+      // console.log(`New card added: ${Object.entries(result).join('; ')}`);
+      // alert(`New card added: ${Object.entries(result).join('; ')}`);
       setCards([result, ...cards]);
       closeAllPopups(evt, true);
     }).catch(err => console.log(errMsg4AddCardForm(err))
