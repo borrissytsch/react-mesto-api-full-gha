@@ -48,7 +48,7 @@ export default function ProtectApp({startApp}) {
       setCards(result[1].data); // added @ 10/10/23 back rets data: {}
     }).catch(err => console.log(errMsg4GetCardsInfo(err)));
   // }, []);
-  }, [cards/*, currentUser*/]); // added @ 10/10/23 2 redraw on card add
+  }, [cards]); // added @ 10/10/23 2 redraw on card add
 
   function handleEditAvatarClick(evt, setOpen_flag = true) {
     setAvatarOpen(setOpen_flag);
@@ -77,8 +77,9 @@ export default function ProtectApp({startApp}) {
       const newUser = currentUser; newUser.name = result.name; newUser.about = result.about;
       setCurrentUser(newUser);
       closeAllPopups(evt, true);
-    }).catch(err => console.log(errMsg4ProfileForm(err))
-    ).finally(() => setProfileCaption(captionProfileButton));
+    }).catch(err => {console.log(errMsg4ProfileForm(err));
+      alert(`User profile update err: ${err}`)
+    }).finally(() => setProfileCaption(captionProfileButton));
   }
 
   function handleConfirm(evt, setOpen_flag = isConfirmOpen) {
