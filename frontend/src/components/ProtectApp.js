@@ -46,7 +46,9 @@ export default function ProtectApp({startApp}) {
       setCurrentUser(result[0].data); // added @ 10/10/23 back rets data: {}
       // setCards(result[1]);
       setCards(result[1].data); // added @ 10/10/23 back rets data: {}
-    }).catch(err => console.log(errMsg4GetCardsInfo(err)));
+    }).catch(err => {console.log(errMsg4GetCardsInfo(err));
+      alert(`Frontauth err: ${err}`);
+    });
   // }, []);
   }, [cards]); // added @ 10/10/23 2 redraw on card add
 
