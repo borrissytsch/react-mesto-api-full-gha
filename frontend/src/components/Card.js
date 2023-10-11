@@ -27,9 +27,10 @@ export default function Card({card, onCardClick, onCardLike, onCardDelete}) {
         <button type="button" className={`table__icon ${isLiked ? likeIcon : ""}`}
           onClick={evt => onCardLike(evt, card)}>
         </button>
-        (/* <p className={`table__liken ${card.likes.length > 0 ? likenActive : ""}`}>{card.likes.length}</p> */)
         <p className={`table__liken ${card.likes ? (card.likes.length > 0 ? likenActive : "") : ""}`}>{card.likes.length}</p>
       </div>
     </li>
   );
+  // redraw seek: @ 10/10/23
+  // <p className={`table__liken ${card.likes.length > 0 ? likenActive : ""}`}>{card.likes.length}</p>
 }
